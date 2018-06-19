@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  mySite:    
+    build: .
+    ports:
+      - 80:80
+    environment:
+      - BASEPATH=/myBasePath
