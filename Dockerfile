@@ -4,7 +4,7 @@ EXPOSE 80
 
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
-COPY paprikon.StaticFileServer/paprikon.StaticFileServer.csproj paprikon.StaticFileServer/
+COPY src/paprikon.StaticFileServer.csproj paprikon.StaticFileServer/
 RUN dotnet restore paprikon.StaticFileServer/paprikon.StaticFileServer.csproj
 COPY . .
 WORKDIR /src/paprikon.StaticFileServer
