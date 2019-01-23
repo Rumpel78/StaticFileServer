@@ -20,7 +20,7 @@ Your docker-compose.yml should look like this one:
 version: '2'
 
 services:
-  mySite:    
+  mysite:    
     build: .
     ports:
       - 80:80
