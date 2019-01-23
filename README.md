@@ -28,7 +28,7 @@ services:
       - BASEPATH=/myBasePath
 ```
 
-Change the basepath according to your wishes.
+Change the basepath according to your wishes. If you dont need a basepath, just remove the variable or keep it empty, don't add a trailing slash
 
 ### Why I built this image
 
