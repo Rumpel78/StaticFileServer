@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/paprikon.StaticFileServer.csproj"
+                "${workspaceFolder}/src/StaticFileServer.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
