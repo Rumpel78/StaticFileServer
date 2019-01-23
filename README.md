@@ -30,6 +30,6 @@ services:
 
 Change the basepath according to your wishes.
 
-### Why I build this image
+### Why I built this image
 
 Because I wanted some easy and performant solution of hosting some plain html/js files using Traefik Proxy and Path selector.
