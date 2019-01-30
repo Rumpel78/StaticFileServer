@@ -7,3 +7,4 @@ services:
       - 80:80
     environment:
       - BASEPATH=/myBasePath
+      - SPA_APPLICATION=true

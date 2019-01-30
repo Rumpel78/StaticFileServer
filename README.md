@@ -26,7 +26,11 @@ services:
       - 80:80
     environment:
       - BASEPATH=/myBasePath
+      - SPA_APPLICATION=true
 ```
+
+`BASEPATH` sets the application base path, default is the domain root
+`SPA_APPLICATION` determines wether to server `index.html` if no static file was found, instead of a 404 error. Useful for single-page-applications. Defaults to true.
 
 Change the basepath according to your wishes. If you dont need a basepath, just remove the variable or keep it empty, don't add a trailing slash
 
