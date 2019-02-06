@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -28,15 +29,13 @@ namespace paprikon.StaticFileServer
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IConfiguration config)
         {
-            var basepath = Environment.GetEnvironmentVariable("BASEPATH") ?? "";
-            if (!bool.TryParse(Environment.GetEnvironmentVariable("SPA_APPLICATION"), out var isSpaApplication)) {
-                isSpaApplication = true;
-            }
+            var basepath = (config["ASPNETCORE_BASEPATH"] ?? "").TrimEnd('/');
 
-            _logger.LogInformation("BASEPATH = " + basepath);
-            _logger.LogInformation("SPA_APPLICATION = " + isSpaApplication);
+            _logger.LogInformation("ASPNETCORE_BASEPATH = " + basepath);
+            _logger.LogInformation($"ASPNETCORE_SPA = {(config["ASPNETCORE_SPA"] ?? "false")}");
+            _logger.LogInformation($"ASPNETCORE_INDEX = {(config["ASPNETCORE_INDEX"] ?? "index.html")}");
 
             app.UseDefaultFiles(basepath);
             app.UseStaticFiles(new StaticFileOptions
@@ -49,9 +48,9 @@ namespace paprikon.StaticFileServer
                 },
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
                 RequestPath = basepath,
-
             });
 
+            Boolean.TryParse(config["ASPNETCORE_SPA"], out var isSpaApplication);
             if (isSpaApplication) {
                 app.UseMvc(routes => {
                     routes.MapSpaFallbackRoute(

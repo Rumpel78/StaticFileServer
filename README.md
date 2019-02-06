@@ -25,14 +25,16 @@ services:
     ports:
       - 80:80
     environment:
-      - BASEPATH=/myBasePath
-      - SPA_APPLICATION=true
+      - ASPNETCORE_BASEPATH=/myBasePath
+      - ASPNETCORE_SPA=true
+      - ASPNETCORE_INDEX=index.html
 ```
 
-`BASEPATH` sets the application base path, default is the domain root
-`SPA_APPLICATION` determines wether to server `index.html` if no static file was found, instead of a 404 error. Useful for single-page-applications. Defaults to true.
+- `ASPNETCORE_BASEPATH` sets the application base path, default is the domain root  
+- `ASPNETCORE_SPA` determines wether to server the index file if no static file was found, instead of a 404 error. Useful for single-page-applications. Defaults to true.  
+- `ASPNETCORE_INDEX` defines the the index file to search in case of `ASPNETCORE_SPA` is set to true. Default is `index.html`
 
-Change the basepath according to your wishes. If you dont need a basepath, just remove the variable or keep it empty, don't add a trailing slash
+You can omit all environment variables and use the default values (basepath is root, server index.html in case of 404 not found)
 
 ### Why I built this image
 

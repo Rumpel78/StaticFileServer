@@ -6,5 +6,6 @@ services:
     ports:
       - 80:80
     environment:
-      - BASEPATH=/myBasePath
-      - SPA_APPLICATION=true
+      - ASPNETCORE_BASEPATH=/myBasePath
+      - ASPNETCORE_SPA=true
+      - ASPNETCORE_INDEX=index.html
